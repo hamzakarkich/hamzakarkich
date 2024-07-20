@@ -1,4 +1,4 @@
-# Hello, I'm Hamza KARKICH 👋
+# Hello, I'm Hamza 👋
 
 
 ## Contact Me
