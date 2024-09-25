@@ -2,11 +2,10 @@
 
 
 ## Contact Me
-- 📧 Email: [hamza.karkich@gmail.com](mailto:hamza.karkich@gmail.com)
 - 💼 LinkedIn: [linkedin.com/in/hamzakarkich](https://www.linkedin.com/in/hamzakarkich)
 
 ## Fun Fact
-- I love swimming and chatting about tech!
+- I love swimming and chatting about Ai!
 
 ## Tech Stack
 ![C](https://img.shields.io/badge/C-00599C?style=for-the-badge&logo=c&logoColor=white)
