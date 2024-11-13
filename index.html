@@ -7,60 +7,52 @@
 
     <!-- Favicon -->
     <link rel="icon" href="https://cdn.bio.link/uploads/profile_pictures/2024-02-21/deAqHfv0GBt7f8i7HNjpuCP1jxayJYvo.png" type="image/png">
-    
-    <!-- Tailwind CSS and Font Awesome -->
+
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    
-    <!-- Smooth Scroll CSS -->
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-    </style>
-
-    <!-- JavaScript for Mobile Menu Toggle -->
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById('mobileMenu');
-            menu.classList.toggle('hidden');
-        }
-    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
 </head>
-<body class="bg-white">
-
-    <!-- Sticky Header with Logo, Rounded Corners, and Mobile Menu -->
+<body class="min-h-screen bg-gray-50">
+    <!-- Header -->
     <header class="sticky top-0 bg-white z-50 rounded-lg shadow-md mx-6 mt-4">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="/" class="flex items-center">
-                <img src="https://cdn.bio.link/uploads/profile_pictures/2024-02-21/deAqHfv0GBt7f8i7HNjpuCP1jxayJYvo.png" alt="Site Logo" class="h-10 w-auto">
-            </a>
-            
-            <!-- Desktop Navigation -->
-            <nav class="hidden md:flex space-x-6">
-                <a href="#google" class="text-gray-600 hover:text-blue-600">Google Extensions</a>
-                <a href="#firefox" class="text-gray-600 hover:text-blue-600">Firefox Extensions</a>
-                <a href="#plugins" class="text-gray-600 hover:text-blue-600">Plugins</a>
-            </nav>
-            
-            <!-- Mobile Menu Button -->
-            <button class="md:hidden text-gray-600" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
+        <div class="container mx-auto px-6 py-4">
+            <nav class="flex justify-between items-center">
+                <a href="/" class="flex items-center">
+                    <img src="https://cdn.bio.link/uploads/profile_pictures/2024-02-21/deAqHfv0GBt7f8i7HNjpuCP1jxayJYvo.png" alt="Site Logo" class="h-10 w-auto">
+                </a>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#google" class="text-gray-600 hover:text-blue-600 flex items-center gap-2">
+                        <i data-feather="chrome" class="h-4 w-4"></i>
+                        Google Extensions
+                    </a>
+                    <a href="#firefox" class="text-gray-600 hover:text-blue-600 flex items-center gap-2">
+                        <i data-feather="compass" class="h-4 w-4"></i>
+                        Firefox Extensions
+                    </a>
+                    <a href="#plugins" class="text-gray-600 hover:text-blue-600 flex items-center gap-2">
+                        <i data-feather="package" class="h-4 w-4"></i>
+                        Plugins
+                    </a>
+                </div>
 
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="md:hidden hidden px-6 pb-4 space-y-2">
-            <a href="#google" class="block text-gray-600 hover:text-blue-600">Google Extensions</a>
-            <a href="#firefox" class="block text-gray-600 hover:text-blue-600">Firefox Extensions</a>
-            <a href="#plugins" class="block text-gray-600 hover:text-blue-600">Plugins</a>
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-gray-600" id="mobileMenuButton">
+                    <i data-feather="menu" class="h-6 w-6"></i>
+                </button>
+            </nav>
+
+            <!-- Mobile Menu -->
+            <div class="md:hidden hidden mt-4" id="mobileMenu">
+                <a href="#google" class="block py-2 text-gray-600 hover:text-blue-600">Google Extensions</a>
+                <a href="#firefox" class="block py-2 text-gray-600 hover:text-blue-600">Firefox Extensions</a>
+                <a href="#plugins" class="block py-2 text-gray-600 hover:text-blue-600">Plugins</a>
+            </div>
         </div>
     </header>
 
     <!-- Main Content -->
     <main class="container mx-auto px-6 py-16">
-
-        <!-- Extensions Section -->
+        <!-- Google Extensions Section -->
         <section id="google" class="mb-24">
             <h2 class="text-2xl font-medium mb-12">Google Extensions</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -252,10 +244,11 @@
                             </div>
                         </div>
                     </div>
+
             </div>
         </section>
 
-        <!-- Firefox Section -->
+        <!-- Firefox Extensions Section -->
         <section id="firefox" class="mb-24">
             <h2 class="text-2xl font-medium mb-12">Firefox Extensions</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -391,7 +384,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </section>
 
@@ -434,30 +427,36 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </section>
-
     </main>
 
-    <!-- Minimal Footer -->
-    <footer class="border-t border-gray-100 py-8">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-center">
-                <div class="flex items-center space-x-2 mb-4 md:mb-0">
-                    <span class="text-sm text-gray-600">© 2024 Hamza.</span>
-                </div>
-                <div class="flex space-x-6">
-                    <a href="https://linkedin.com/in/hamzakarkich" class="text-gray-400 hover:text-gray-600 transition-colors">
-                        <i class="fab fa-linkedin"></i>
-                    </a>
-                    <a href="https://github.com/hamzakarkich" class="text-gray-400 hover:text-gray-600 transition-colors">
-                        <i class="fab fa-github"></i>
-                    </a>
-                </div>
+    <!-- Footer -->
+    <footer class="container mx-auto px-6 py-8">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center space-x-2 mb-4 md:mb-0">
+                <span class="text-sm text-gray-600">© 2024 Hamza.</span>
+            </div>
+            <div class="flex space-x-6">
+                <a href="https://linkedin.com/in/hamzakarkich" class="text-gray-400 hover:text-gray-600 transition-colors">
+                    <i data-feather="linkedin" class="h-5 w-5"></i>
+                </a>
+                <a href="https://github.com/hamzakarkich" class="text-gray-400 hover:text-gray-600 transition-colors">
+                    <i data-feather="github" class="h-5 w-5"></i>
+                </a>
             </div>
         </div>
     </footer>
 
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Mobile Menu Toggle
+        document.getElementById('mobileMenuButton').addEventListener('click', function() {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+    </script>
 </body>
 </html>
