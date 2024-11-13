@@ -7,20 +7,63 @@
 
     <!-- Favicon -->
     <link rel="icon" href="https://cdn.bio.link/uploads/profile_pictures/2024-02-21/deAqHfv0GBt7f8i7HNjpuCP1jxayJYvo.png" type="image/png">
-
+    
+    <!-- Tailwind CSS and Font Awesome -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Smooth Scroll CSS -->
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+
+    <!-- JavaScript for Mobile Menu Toggle -->
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+    </script>
 </head>
 <body class="bg-white">
- 
+
+    <!-- Sticky Header with Logo, Rounded Corners, and Mobile Menu -->
+    <header class="sticky top-0 bg-white z-50 rounded-lg shadow-md mx-6 mt-4">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="/" class="flex items-center">
+                <img src="https://cdn.bio.link/uploads/profile_pictures/2024-02-21/deAqHfv0GBt7f8i7HNjpuCP1jxayJYvo.png" alt="Site Logo" class="h-10 w-auto">
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex space-x-6">
+                <a href="#google" class="text-gray-600 hover:text-blue-600">Google Extensions</a>
+                <a href="#firefox" class="text-gray-600 hover:text-blue-600">Firefox Extensions</a>
+                <a href="#plugins" class="text-gray-600 hover:text-blue-600">Plugins</a>
+            </nav>
+            
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-gray-600" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="md:hidden hidden px-6 pb-4 space-y-2">
+            <a href="#google" class="block text-gray-600 hover:text-blue-600">Google Extensions</a>
+            <a href="#firefox" class="block text-gray-600 hover:text-blue-600">Firefox Extensions</a>
+            <a href="#plugins" class="block text-gray-600 hover:text-blue-600">Plugins</a>
+        </div>
+    </header>
+
     <!-- Main Content -->
     <main class="container mx-auto px-6 py-16">
 
         <!-- Extensions Section -->
-        <section id="extensions" class="mb-24">
+        <section id="google" class="mb-24">
             <h2 class="text-2xl font-medium mb-12">Google Extensions</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
                 <!-- Extension Card -->
                 <div class="group">
                     <div class="p-6 bg-gray-50 rounded-xl transition-all duration-300 hover:shadow-lg">
@@ -209,14 +252,13 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </section>
+            </div>
+        </section>
 
         <!-- Firefox Section -->
         <section id="firefox" class="mb-24">
             <h2 class="text-2xl font-medium mb-12">Firefox Extensions</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
                 <!-- Firefox Extension Card -->
                 <div class="group">
                     <div class="p-6 bg-gray-50 rounded-xl transition-all duration-300 hover:shadow-lg">
@@ -348,8 +390,8 @@
                             </div>
                         </div>
                     </div>
-                </div>   
-
+                </div>
+                
             </div>
         </section>
 
@@ -357,7 +399,6 @@
         <section id="plugins" class="mb-24">
             <h2 class="text-2xl font-medium mb-12">Plugins</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
                 <!-- Plugin Card -->
                 <div class="group">
                     <div class="p-6 bg-gray-50 rounded-xl transition-all duration-300 hover:shadow-lg">
@@ -393,7 +434,7 @@
                         </div>
                     </div>
                 </div>
-
+                
             </div>
         </section>
 
@@ -417,5 +458,6 @@
             </div>
         </div>
     </footer>
+
 </body>
 </html>
