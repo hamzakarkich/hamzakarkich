@@ -3,6 +3,7 @@
 
 ## Contact Me
 - 💼 LinkedIn: [linkedin.com/in/hamzakarkich](https://www.linkedin.com/in/hamzakarkich)
+- 🌐 Portfolio: hamzakarkich.pages.dev
 
 ## Fun Fact
 - I love swimming and chatting about Ai!
