@@ -604,7 +604,7 @@
         <div class="glass-effect rounded-2xl p-8">
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="flex items-center space-x-2 mb-4 md:mb-0">
-                    <span class="text-sm text-gray-600">© 2024 Hamza</span>
+                    <span class="text-sm text-gray-600">© <span id="currentYear"></span> Hamza</span>
                 </div>
                 <div class="flex space-x-6">
                     <a href="https://linkedin.com/in/hamzakarkich" 
@@ -626,9 +626,14 @@
 
     <script>
         feather.replace();
+        
+        // Mobile menu toggle
         document.getElementById('mobileMenuButton').addEventListener('click', function() {
             document.getElementById('mobileMenu').classList.toggle('hidden');
         });
+        
+        // Auto update copyright year
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
