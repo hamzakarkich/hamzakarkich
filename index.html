@@ -117,9 +117,65 @@
         .dark .contact-button:hover {
             background-color: #4b5563;  /* gray-600 */
         }
+
+        /* Mouse follower styles */
+        .mouse-follower {
+            pointer-events: none;
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            will-change: transform;
+        }
+
+        .mouse-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, 
+                rgba(239, 68, 68, 0) 0%, 
+                rgba(239, 68, 68, 0.8) 50%, 
+                rgba(239, 68, 68, 0) 100%
+            );
+            transform-origin: 0% 50%;
+            filter: blur(0.5px);
+            box-shadow: 0 0 8px rgba(239, 68, 68, 0.3);
+        }
+
+        .mouse-line::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 4px;
+            height: 4px;
+            background: rgb(239, 68, 68);
+            border-radius: 50%;
+            box-shadow: 0 0 4px rgba(239, 68, 68, 0.8);
+        }
+
+        .dark .mouse-line {
+            background: linear-gradient(90deg, 
+                rgba(239, 68, 68, 0) 0%, 
+                rgba(239, 68, 68, 0.6) 50%, 
+                rgba(239, 68, 68, 0) 100%
+            );
+        }
+
+        @media (max-width: 768px) {
+            .mouse-follower {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body class="min-h-screen">
+    <!-- Add mouse follower element -->
+    <div id="mouseFollower" class="mouse-follower"></div>
+    
     <!-- Header -->
     <header class="sticky top-2 sm:top-4 z-50 mx-3 sm:mx-6">
         <nav class="glass-effect rounded-2xl shadow-lg px-6 py-4">
@@ -763,6 +819,46 @@
         // Add event listeners for theme toggle buttons
         document.getElementById('themeToggle').addEventListener('click', toggleTheme);
         document.getElementById('mobileThemeToggle').addEventListener('click', toggleTheme);
+
+        // Modern mouse follower effect
+        const mouseFollower = document.getElementById('mouseFollower');
+        mouseFollower.innerHTML = '<div class="mouse-line"></div>';
+        const mouseLine = mouseFollower.querySelector('.mouse-line');
+        
+        let mouseX = 0;
+        let mouseY = 0;
+        let lastX = 0;
+        let lastY = 0;
+        let currentAngle = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            // Calculate angle between last position and current position
+            const dx = mouseX - lastX;
+            const dy = mouseY - lastY;
+            
+            if (Math.abs(dx) > 0 || Math.abs(dy) > 0) {
+                const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+                // Smooth angle transition
+                currentAngle = angle;
+            }
+
+            // Update follower position and rotation
+            mouseFollower.style.transform = `translate(${mouseX}px, ${mouseY}px)`;
+            mouseLine.style.transform = `rotate(${currentAngle}deg) scaleX(${Math.min(Math.sqrt(dx * dx + dy * dy) / 20, 2)})`;
+            mouseFollower.style.opacity = '1';
+
+            lastX = mouseX;
+            lastY = mouseY;
+        });
+
+        document.addEventListener('mouseleave', () => {
+            mouseFollower.style.opacity = '0';
+        });
+
+        // Remove old animation code
     </script>
 </body>
 </html>
