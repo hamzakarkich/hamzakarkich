@@ -189,6 +189,10 @@
                     </a>
                     
                     <div class="hidden md:flex items-center space-x-8">
+                        <a href="#webpages" class="nav-link text-gray-600 hover:text-gray-900 flex items-center gap-2">
+                            <i data-feather="globe" class="h-4 w-4"></i>
+                            Webpages
+                        </a>
                         <a href="#google" class="nav-link text-gray-600 hover:text-gray-900 flex items-center gap-2">
                             <i data-feather="chrome" class="h-4 w-4"></i>
                             Google Extensions
@@ -201,7 +205,6 @@
                             <i data-feather="package" class="h-4 w-4"></i>
                             Plugins
                         </a>
-                        <!-- Add theme toggle button -->
                         <button id="themeToggle" class="theme-toggle text-gray-600 hover:text-gray-900 flex items-center gap-2">
                             <i data-feather="sun" class="h-4 w-4 dark:hidden"></i>
                             <i data-feather="moon" class="h-4 w-4 hidden dark:block"></i>
@@ -215,6 +218,7 @@
 
                 <!-- Mobile Menu -->
                 <div class="md:hidden hidden mt-4 space-y-3" id="mobileMenu">
+                    <a href="#webpages" class="block py-2 text-gray-600 hover:text-gray-900">Webpages</a>
                     <a href="#google" class="block py-2 text-gray-600 hover:text-gray-900">Google Extensions</a>
                     <a href="#firefox" class="block py-2 text-gray-600 hover:text-gray-900">Firefox Extensions</a>
                     <a href="#plugins" class="block py-2 text-gray-600 hover:text-gray-900">Plugins</a>
@@ -228,6 +232,33 @@
 
     <!-- Main Content -->
     <main class="container mx-auto px-4 sm:px-6 py-8 sm:py-16">
+    <!-- Webpages Section -->
+    <section id="webpages" class="mb-24">
+        <h2 class="section-header">Webpages</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+            <!-- Webpage Card -->
+            <div class="card-hover rounded-2xl overflow-hidden bg-white shadow-sm group">
+                <div class="p-6 sm:p-4 card-mobile">
+                    <div class="flex items-center space-x-3 sm:space-x-2">
+                        <div class="w-12 h-12 sm:w-10 sm:h-10 rounded-xl shadow-md transition-transform group-hover:scale-110 bg-gradient-to-br from-blue-500 to-cyan-600 flex items-center justify-center">
+                            <i data-feather="image" class="h-6 w-6 text-white"></i>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h3 class="font-semibold text-gray-800 truncate title-mobile">Image Compressor</h3>
+                        </div>
+                        <a href="https://imagecompressor.pages.dev/" 
+                           target="_blank" 
+                           rel="noopener"
+                           class="button-mobile inline-flex items-center justify-center px-5 py-2 sm:px-4 sm:py-1.5 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-900 hover:to-black transition-all duration-300 group-hover:scale-105 whitespace-nowrap">
+                            <span class="sm:hidden">Visit</span>
+                            <span class="hidden sm:inline">Visit</span>
+                            <i data-feather="external-link" class="h-4 w-4 ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
         <!-- Google Extensions Section -->
         <section id="google" class="mb-24">
             <h2 class="section-header">Google Extensions</h2>
