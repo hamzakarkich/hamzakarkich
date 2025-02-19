@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hamza</title>
     <link rel="icon" href="https://cdn.bio.link/uploads/profile_pictures/2024-02-21/deAqHfv0GBt7f8i7HNjpuCP1jxayJYvo.png" type="image/png">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js" as="script">
+    <link rel="preload" href="https://cdn.tailwindcss.com" as="script">
+    <link rel="preload" href="https://cdn.bio.link/uploads/profile_pictures/2024-02-21/deAqHfv0GBt7f8i7HNjpuCP1jxayJYvo.png" as="image">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -17,6 +20,8 @@
         }
         .card-hover {
             transition: all 0.3s ease;
+            will-change: transform;
+            transform: translateZ(0);
         }
         .card-hover:hover {
             transform: translateY(-5px);
@@ -33,6 +38,9 @@
             transition: width 0.3s ease;
         }
         .nav-link:hover::after {
+            width: 100%;
+        }
+        .nav-link:focus-visible::after {
             width: 100%;
         }
         .section-header {
@@ -127,7 +135,8 @@
             z-index: -1;
             opacity: 0;
             transition: opacity 0.3s ease;
-            will-change: transform;
+            will-change: transform, opacity;
+            transform: translateZ(0);
         }
 
         .mouse-line {
@@ -169,6 +178,52 @@
             .mouse-follower {
                 display: none;
             }
+        }
+
+        /* Enhanced animations */
+        @keyframes fadeIn {
+            from { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-section {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Optional: Add stagger effect for children */
+        .animate-section .card-hover {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animate-section.visible .card-hover {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Add delay for each card */
+        .animate-section.visible .card-hover:nth-child(1) { transition-delay: 0.1s; }
+        .animate-section.visible .card-hover:nth-child(2) { transition-delay: 0.2s; }
+        .animate-section.visible .card-hover:nth-child(3) { transition-delay: 0.3s; }
+        /* ...and so on for other cards if needed */
+
+        /* Improved dark mode transitions */
+        html.transitioning * {
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
     </style>
 </head>
@@ -233,7 +288,7 @@
     <!-- Main Content -->
     <main class="container mx-auto px-4 sm:px-6 py-8 sm:py-16">
     <!-- Webpages Section -->
-    <section id="webpages" class="mb-24">
+    <section id="webpages" class="mb-24 animate-section" data-section>
         <h2 class="section-header">Webpages</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
             <!-- Webpage Card -->
@@ -260,7 +315,7 @@
         </div>
     </section>
         <!-- Google Extensions Section -->
-        <section id="google" class="mb-24">
+        <section id="google" class="mb-24 animate-section">
             <h2 class="section-header">Google Extensions</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                 <!-- Extension Card Template -->
@@ -574,7 +629,7 @@
         </section>
 
         <!-- Firefox Extensions Section -->
-        <section id="firefox" class="mb-24">
+        <section id="firefox" class="mb-24 animate-section">
             <h2 class="section-header">Firefox Extensions</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
 
@@ -693,7 +748,7 @@
         </section>
 
         <!-- Plugins Section -->
-        <section id="plugins" class="mb-16">  <!-- Changed from mb-24 to mb-16 -->
+        <section id="plugins" class="mb-16 animate-section">  <!-- Changed from mb-24 to mb-16 -->
             <h2 class="section-header">Plugins</h2> <!-- Added missing section header -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
                 <!-- Plugin Card -->
@@ -831,13 +886,14 @@
 
         // Theme toggle functionality
         function toggleTheme() {
-            if (document.documentElement.classList.contains('dark')) {
-                document.documentElement.classList.remove('dark');
-                localStorage.setItem('theme', 'light');
-            } else {
-                document.documentElement.classList.add('dark');
-                localStorage.setItem('theme', 'dark');
-            }
+            document.documentElement.classList.add('transitioning');
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+            
+            setTimeout(() => {
+                document.documentElement.classList.remove('transitioning');
+            }, 300);
+            
             feather.replace(); // Refresh icons
         }
 
@@ -889,7 +945,30 @@
             mouseFollower.style.opacity = '0';
         });
 
-        // Remove old animation code
+        // Optimized intersection observer for animations
+        const animateOnScroll = new IntersectionObserver(
+            (entries) => {
+                entries.forEach(entry => {
+                    // Add 'visible' class when element is in view
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        // Optionally unobserve after animation
+                        // animateOnScroll.unobserve(entry.target);
+                    }
+                });
+            },
+            {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            }
+        );
+
+        // Observe all sections with animation
+        document.querySelectorAll('.animate-section').forEach(section => {
+            animateOnScroll.observe(section);
+        });
+
+        // ...rest of existing script...
     </script>
 </body>
 </html>
